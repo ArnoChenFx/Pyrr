@@ -134,42 +134,42 @@ class Matrix44(BaseMatrix44):
     ########################
     # Creation
     @classmethod
-    def from_matrix33(cls, matrix, dtype=None):
+    def from_matrix33(cls, matrix, dtype=np.float64):
         """Creates a Matrix44 from a Matrix33.
         """
         return cls(matrix44.create_from_matrix33(matrix, dtype))
 
     @classmethod
-    def perspective_projection(cls, fovy, aspect, near, far, dtype=None):
+    def perspective_projection(cls, fovy, aspect, near, far, dtype=np.float64):
         """Creates a Matrix44 for use as a perspective projection matrix.
         """
         return cls(matrix44.create_perspective_projection(fovy, aspect, near, far, dtype))
 
     @classmethod
-    def perspective_projection_bounds(cls, left, right, top, bottom, near, far, dtype=None):
+    def perspective_projection_bounds(cls, left, right, top, bottom, near, far, dtype=np.float64):
         """Creates a Matrix44 for use as a perspective projection matrix.
         """
         return cls(matrix44.create_perspective_projection_from_bounds(left, right, top, bottom, near, far, dtype))
 
     @classmethod
-    def orthogonal_projection(cls, left, right, top, bottom, near, far, dtype=None):
+    def orthogonal_projection(cls, left, right, top, bottom, near, far, dtype=np.float64):
         """Creates a Matrix44 for use as an orthogonal projection matrix.
         """
         return cls(matrix44.create_orthogonal_projection(left, right, top, bottom, near, far, dtype))
 
     @classmethod
-    def look_at(cls, eye, target, up, dtype=None):
+    def look_at(cls, eye, target, up, dtype=np.float64):
         """Creates a Matrix44 for use as a lookAt matrix.
         """
         return cls(matrix44.create_look_at(eye, target, up, dtype))
 
     @classmethod
-    def from_translation(cls, translation, dtype=None):
+    def from_translation(cls, translation, dtype=np.float64):
         """Creates a Matrix44 from the specified translation.
         """
         return cls(matrix44.create_from_translation(translation, dtype=dtype))
 
-    def __new__(cls, value=None, dtype=None):
+    def __new__(cls, value=None, dtype=np.float64):
         if value is not None:
             obj = value
             if not isinstance(value, np.ndarray):
@@ -182,7 +182,7 @@ class Matrix44(BaseMatrix44):
             elif obj.shape == (4,) or isinstance(obj, Quaternion):
                 obj = matrix44.create_from_quaternion(obj, dtype=dtype)
         else:
-            obj = np.zeros(cls._shape, dtype=dtype)
+            obj = np.identity(cls._shape[0], dtype=dtype)
         obj = obj.view(cls)
         return super(Matrix44, cls).__new__(cls, obj)
 

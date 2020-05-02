@@ -81,14 +81,14 @@ class Vector4(BaseVector4):
     ########################
     # Creation
     @classmethod
-    def from_vector3(cls, vector, w=0.0, dtype=None):
+    def from_vector3(cls, vector, w=0.0, dtype=np.float64):
         """Create a Vector4 from a Vector3.
 
         By default, the W value is 0.0.
         """
         return cls(vector4.create_from_vector3(vector, w, dtype))
 
-    def __new__(cls, value=None, dtype=None):
+    def __new__(cls, value=None, dtype=np.float64):
         if value is not None:
             obj = value
             if not isinstance(value, np.ndarray):

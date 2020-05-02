@@ -31,11 +31,11 @@ class index:
     maximum = 1
 
 
-def create_zeros(dtype=None):
+def create_zeros(dtype=np.float64):
     return np.zeros((2,3), dtype=dtype)
 
 @parameters_as_numpy_arrays('min', 'max')
-def create_from_bounds(min, max, dtype=None):
+def create_from_bounds(min, max, dtype=np.float64):
     """Creates an AABB using the specified minimum
     and maximum values.
     """
@@ -43,7 +43,7 @@ def create_from_bounds(min, max, dtype=None):
     return np.array([min, max], dtype=dtype)
 
 @parameters_as_numpy_arrays('points')
-def create_from_points(points, dtype=None):
+def create_from_points(points, dtype=np.float64):
     """Creates an AABB from the list of specified points.
 
     Points must be a 2D list. Ie::
@@ -62,7 +62,7 @@ def create_from_points(points, dtype=None):
     )
 
 @parameters_as_numpy_arrays('aabbs')
-def create_from_aabbs(aabbs, dtype=None):
+def create_from_aabbs(aabbs, dtype=np.float64):
     """Creates an AABB from a list of existing AABBs.
 
     AABBs must be a 2D list. Ie::

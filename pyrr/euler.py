@@ -22,7 +22,7 @@ class index:
     yaw = 2
 
 
-def create(roll=0., pitch=0., yaw=0., dtype=None):
+def create(roll=0., pitch=0., yaw=0., dtype=np.float64):
     """Creates an array storing the specified euler angles.
 
     Input values are in radians.
@@ -35,15 +35,15 @@ def create(roll=0., pitch=0., yaw=0., dtype=None):
     return np.array((roll, pitch, yaw), dtype=dtype)
 
 
-def create_from_x_rotation(theta, dtype=None):
+def create_from_x_rotation(theta, dtype=np.float64):
     return np.array([theta, 0., 0.], dtype=dtype)
 
 
-def create_from_y_rotation(theta, dtype=None):
+def create_from_y_rotation(theta, dtype=np.float64):
     return np.array([0., theta, 0.], dtype=dtype)
 
 
-def create_from_z_rotation(theta, dtype=None):
+def create_from_z_rotation(theta, dtype=np.float64):
     return np.array([0., 0., theta], dtype=dtype)
 
 

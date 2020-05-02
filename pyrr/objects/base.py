@@ -44,45 +44,45 @@ class BaseObject(np.ndarray):
 
 class BaseMatrix(BaseObject):
     @classmethod
-    def identity(cls, dtype=None):
+    def identity(cls, dtype=np.float64):
         """Creates an identity Matrix.
         """
         return cls(cls._module.create_identity(dtype), dtype)
 
     @classmethod
-    def from_eulers(cls, eulers, dtype=None):
+    def from_eulers(cls, eulers, dtype=np.float64):
         """Creates a Matrix from the specified Euler angles.
         """
         return cls(cls._module.create_from_eulers(eulers, dtype=dtype))
 
     @classmethod
-    def from_quaternion(cls, quat, dtype=None):
+    def from_quaternion(cls, quat, dtype=np.float64):
         """Creates a Matrix from a Quaternion.
         """
         return cls(cls._module.create_from_quaternion(quat, dtype=dtype))
 
     @classmethod
-    def from_inverse_of_quaternion(cls, quat, dtype=None):
+    def from_inverse_of_quaternion(cls, quat, dtype=np.float64):
         """Creates a Matrix from the inverse of the specified Quaternion.
         """
         return cls(cls._module.create_from_inverse_of_quaternion(quat, dtype=dtype))
 
     @classmethod
-    def from_scale(cls, scale, dtype=None):
+    def from_scale(cls, scale, dtype=np.float64):
         return cls(cls._module.create_from_scale(scale, dtype=dtype))
 
     @classmethod
-    def from_x_rotation(cls, theta, dtype=None):
+    def from_x_rotation(cls, theta, dtype=np.float64):
         """Creates a Matrix with a rotation around the X-axis.
         """
         return cls(cls._module.create_from_x_rotation(theta, dtype=dtype))
 
     @classmethod
-    def from_y_rotation(cls, theta, dtype=None):
+    def from_y_rotation(cls, theta, dtype=np.float64):
         return cls(cls._module.create_from_y_rotation(theta, dtype=dtype))
 
     @classmethod
-    def from_z_rotation(cls, theta, dtype=None):
+    def from_z_rotation(cls, theta, dtype=np.float64):
         """Creates a Matrix with a rotation around the Z-axis.
         """
         return cls(cls._module.create_from_z_rotation(theta, dtype=dtype))
@@ -95,7 +95,7 @@ class BaseMatrix(BaseObject):
 
 class BaseVector(BaseObject):
     @classmethod
-    def from_matrix44_translation(cls, matrix, dtype=None):
+    def from_matrix44_translation(cls, matrix, dtype=np.float64):
         return cls(cls._module.create_from_matrix44_translation(matrix, dtype))
 
     def normalize(self):

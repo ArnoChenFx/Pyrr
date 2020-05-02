@@ -8,29 +8,29 @@ import numpy as np
 from .vector import *
 
 
-def create(x=0., y=0., z=0., dtype=None):
+def create(x=0., y=0., z=0., dtype=np.float64):
     if isinstance(x, (list, np.ndarray)):
         raise ValueError('Function requires non-list arguments')
     return np.array([x,y,z], dtype=dtype)
 
-def create_unit_length_x(dtype=None):
+def create_unit_length_x(dtype=np.float64):
     return np.array([1.0, 0.0, 0.0], dtype=dtype)
 
-def create_unit_length_y(dtype=None):
+def create_unit_length_y(dtype=np.float64):
     return np.array([0.0, 1.0, 0.0], dtype=dtype)
 
-def create_unit_length_z(dtype=None):
+def create_unit_length_z(dtype=np.float64):
     return np.array([0.0, 0.0, 1.0], dtype=dtype)
 
 @parameters_as_numpy_arrays('vector')
-def create_from_vector4(vector, dtype=None):
+def create_from_vector4(vector, dtype=np.float64):
     """Returns a vector3 and the W component as a tuple.
     """
     dtype = dtype or vector.dtype
     return (np.array([vector[0], vector[1], vector[2]], dtype=dtype), vector[3])
 
 @parameters_as_numpy_arrays('mat')
-def create_from_matrix44_translation(mat, dtype=None):
+def create_from_matrix44_translation(mat, dtype=np.float64):
     return np.array(mat[3, :3], dtype=dtype)
 
 def cross(v1, v2):

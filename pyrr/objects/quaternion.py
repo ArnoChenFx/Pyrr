@@ -87,54 +87,54 @@ class Quaternion(BaseQuaternion):
     ########################
     # Creation
     @classmethod
-    def from_x_rotation(cls, theta, dtype=None):
+    def from_x_rotation(cls, theta, dtype=np.float64):
         """Creates a new Quaternion with a rotation around the X-axis.
         """
         return cls(quaternion.create_from_x_rotation(theta, dtype))
 
     @classmethod
-    def from_y_rotation(cls, theta, dtype=None):
+    def from_y_rotation(cls, theta, dtype=np.float64):
         """Creates a new Quaternion with a rotation around the Y-axis.
         """
         return cls(quaternion.create_from_y_rotation(theta, dtype))
 
     @classmethod
-    def from_z_rotation(cls, theta, dtype=None):
+    def from_z_rotation(cls, theta, dtype=np.float64):
         """Creates a new Quaternion with a rotation around the Z-axis.
         """
         return cls(quaternion.create_from_z_rotation(theta, dtype))
 
     @classmethod
-    def from_axis_rotation(cls, axis, theta, dtype=None):
+    def from_axis_rotation(cls, axis, theta, dtype=np.float64):
         """Creates a new Quaternion with a rotation around the specified axis.
         """
         return cls(quaternion.create_from_axis_rotation(axis, theta, dtype))
 
     @classmethod
-    def from_axis(cls, axis, dtype=None):
+    def from_axis(cls, axis, dtype=np.float64):
         """Creates a new Quaternion from an axis with angle magnitude.
         """
         return cls(quaternion.create_from_axis(axis, dtype))
 
     @classmethod
-    def from_matrix(cls, matrix, dtype=None):
+    def from_matrix(cls, matrix, dtype=np.float64):
         """Creates a Quaternion from the specified Matrix (Matrix33 or Matrix44).
         """
         return cls(quaternion.create_from_matrix(matrix, dtype))
 
     @classmethod
-    def from_eulers(cls, eulers, dtype=None):
+    def from_eulers(cls, eulers, dtype=np.float64):
         """Creates a Quaternion from the specified Euler angles.
         """
         return cls(quaternion.create_from_eulers(eulers, dtype))
 
     @classmethod
-    def from_inverse_of_eulers(cls, eulers, dtype=None):
+    def from_inverse_of_eulers(cls, eulers, dtype=np.float64):
         """Creates a Quaternion from the inverse of the specified Euler angles.
         """
         return cls(quaternion.create_from_inverse_of_eulers(eulers, dtype))
 
-    def __new__(cls, value=None, dtype=None):
+    def __new__(cls, value=None, dtype=np.float64):
         if value is not None:
             obj = value
             if not isinstance(value, np.ndarray):

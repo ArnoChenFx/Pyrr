@@ -12,7 +12,7 @@ from . import vector, quaternion, euler
 from .utils import all_parameters_as_numpy_arrays, parameters_as_numpy_arrays
 
 
-def create_identity(dtype=None):
+def create_identity(dtype=np.float64):
     """Creates a new matrix33 and sets it to
     an identity matrix.
 
@@ -21,7 +21,7 @@ def create_identity(dtype=None):
     """
     return np.identity(3, dtype=dtype)
 
-def create_from_matrix44(mat, dtype=None):
+def create_from_matrix44(mat, dtype=np.float64):
     """Creates a Matrix33 from a Matrix44.
 
     :rtype: numpy.array
@@ -31,7 +31,7 @@ def create_from_matrix44(mat, dtype=None):
     return np.array(mat[0:3,0:3], dtype=dtype)
 
 @parameters_as_numpy_arrays('eulers')
-def create_from_eulers(eulers, dtype=None):
+def create_from_eulers(eulers, dtype=np.float64):
     """Creates a matrix from the specified Euler rotations.
 
     :param numpy.array eulers: A set of euler rotations in the format
@@ -76,7 +76,7 @@ def create_from_eulers(eulers, dtype=None):
 
 
 @parameters_as_numpy_arrays('axis')
-def create_from_axis_rotation(axis, theta, dtype=None):
+def create_from_axis_rotation(axis, theta, dtype=np.float64):
     """Creates a matrix from the specified theta rotation around an axis.
 
     :param numpy.array axis: A (3,) vector specifying the axis of rotation.
@@ -105,7 +105,7 @@ def create_from_axis_rotation(axis, theta, dtype=None):
 
 
 @parameters_as_numpy_arrays('quat')
-def create_from_quaternion(quat, dtype=None):
+def create_from_quaternion(quat, dtype=np.float64):
     """Creates a matrix with the same rotation as a quaternion.
 
     :param quat: The quaternion to create the matrix from.
@@ -151,7 +151,7 @@ def create_from_quaternion(quat, dtype=None):
 
 
 @parameters_as_numpy_arrays('quat')
-def create_from_inverse_of_quaternion(quat, dtype=None):
+def create_from_inverse_of_quaternion(quat, dtype=np.float64):
     """Creates a matrix with the inverse rotation of a quaternion.
 
     :param numpy.array quat: The quaternion to make the matrix from (shape 4).
@@ -206,7 +206,7 @@ def create_from_inverse_of_quaternion(quat, dtype=None):
         dtype=dtype
     )
 
-def create_from_scale(scale, dtype=None):
+def create_from_scale(scale, dtype=np.float64):
     """Creates an identity matrix with the scale set.
 
     :param numpy.array scale: The scale to apply as a vector (shape 3).
@@ -221,7 +221,7 @@ def create_from_scale(scale, dtype=None):
         m = m.astype(dtype)
     return m
 
-def create_from_x_rotation(theta, dtype=None):
+def create_from_x_rotation(theta, dtype=np.float64):
     """Creates a matrix with the specified rotation about the X axis.
 
     :param float theta: The rotation, in radians, about the X-axis.
@@ -243,7 +243,7 @@ def create_from_x_rotation(theta, dtype=None):
         dtype=dtype
     )
 
-def create_from_y_rotation(theta, dtype=None):
+def create_from_y_rotation(theta, dtype=np.float64):
     """Creates a matrix with the specified rotation about the Y axis.
 
     :param float theta: The rotation, in radians, about the Y-axis.
@@ -265,7 +265,7 @@ def create_from_y_rotation(theta, dtype=None):
         dtype=dtype
     )
 
-def create_from_z_rotation(theta, dtype=None):
+def create_from_z_rotation(theta, dtype=np.float64):
     """Creates a matrix with the specified rotation about the Z axis.
 
     :param float theta: The rotation, in radians, about the Z-axis.

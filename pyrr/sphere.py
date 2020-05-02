@@ -11,13 +11,13 @@ import numpy as np
 from .utils import all_parameters_as_numpy_arrays, parameters_as_numpy_arrays
 
 @parameters_as_numpy_arrays('center')
-def create(center=None, radius=1.0, dtype=None):
+def create(center=None, radius=1.0, dtype=np.float64):
     if center is None:
         center = [0.,0.,0.]
     return np.array([center[0], center[1], center[2], radius], dtype=dtype)
 
 @parameters_as_numpy_arrays('points')
-def create_from_points(points, dtype=None):
+def create_from_points(points, dtype=np.float64):
     """Creates a sphere centred around 0,0,0 that encompasses
     the furthest point in the provided list.
 

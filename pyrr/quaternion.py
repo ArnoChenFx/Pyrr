@@ -21,10 +21,10 @@ class index:
     w = 3
 
 
-def create(x=0., y=0., z=0., w=1., dtype=None):
+def create(x=0., y=0., z=0., w=1., dtype=np.float64):
     return np.array([x, y, z, w], dtype=dtype)
 
-def create_from_x_rotation(theta, dtype=None):
+def create_from_x_rotation(theta, dtype=np.float64):
     thetaOver2 = theta * 0.5
 
     return np.array(
@@ -37,7 +37,7 @@ def create_from_x_rotation(theta, dtype=None):
         dtype=dtype
     )
 
-def create_from_y_rotation(theta, dtype=None):
+def create_from_y_rotation(theta, dtype=np.float64):
     thetaOver2 = theta * 0.5
 
     return np.array(
@@ -50,7 +50,7 @@ def create_from_y_rotation(theta, dtype=None):
         dtype=dtype
     )
 
-def create_from_z_rotation(theta, dtype=None):
+def create_from_z_rotation(theta, dtype=np.float64):
     thetaOver2 = theta * 0.5
 
     return np.array(
@@ -64,7 +64,7 @@ def create_from_z_rotation(theta, dtype=None):
     )
 
 @parameters_as_numpy_arrays('axis')
-def create_from_axis_rotation(axis, theta, dtype=None):
+def create_from_axis_rotation(axis, theta, dtype=np.float64):
     dtype = dtype or axis.dtype
     # make sure the vector is normalized
     if not np.isclose(np.linalg.norm(axis), 1.):
@@ -84,13 +84,13 @@ def create_from_axis_rotation(axis, theta, dtype=None):
     )
 
 @parameters_as_numpy_arrays('axis')
-def create_from_axis(axis, dtype=None):
+def create_from_axis(axis, dtype=np.float64):
     dtype = dtype or axis.dtype
     theta = np.linalg.norm(axis)
     return create_from_axis_rotation(axis, theta, dtype)
 
 @parameters_as_numpy_arrays('mat')
-def create_from_matrix(mat, dtype=None):
+def create_from_matrix(mat, dtype=np.float64):
     # http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
     # optimised "alternative version" does not produce correct results
     # see issue #42
@@ -126,7 +126,7 @@ def create_from_matrix(mat, dtype=None):
     return quat
 
 @parameters_as_numpy_arrays('eulers')
-def create_from_eulers(eulers, dtype=None):
+def create_from_eulers(eulers, dtype=np.float64):
     """Creates a quaternion from a set of Euler angles.
 
     Eulers are an array of length 3 in the following order:
@@ -159,7 +159,7 @@ def create_from_eulers(eulers, dtype=None):
     )
 
 @parameters_as_numpy_arrays('eulers')
-def create_from_inverse_of_eulers(eulers, dtype=None):
+def create_from_inverse_of_eulers(eulers, dtype=np.float64):
     """Creates a quaternion from the inverse of a set of Euler angles.
 
     Eulers are an array of length 3 in the following order:

@@ -29,7 +29,7 @@ class index:
 
 
 @parameters_as_numpy_arrays('start', 'direction')
-def create(start, direction, dtype=None):
+def create(start, direction, dtype=np.float64):
     dtype = dtype or start.dtype
     return np.array(
         [
@@ -40,7 +40,7 @@ def create(start, direction, dtype=None):
     )
 
 @parameters_as_numpy_arrays('line')
-def create_from_line(line, dtype=None):
+def create_from_line(line, dtype=np.float64):
     """Converts a line or line segment to a ray.
     """
     dtype = dtype or line.dtype

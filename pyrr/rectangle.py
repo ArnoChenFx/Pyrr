@@ -19,7 +19,7 @@ class index:
     size = 1
 
 
-def create(x=0., y=0., width=1., height=1., dtype=None):
+def create(x=0., y=0., width=1., height=1., dtype=np.float64):
     """Creates a rectangle from the specified position and sizes.
 
     This function will interpret the values literally. A negative width
@@ -30,10 +30,10 @@ def create(x=0., y=0., width=1., height=1., dtype=None):
     """
     return np.array([[x, y], [width, height]], dtype=dtype)
 
-def create_zeros(dtype=None):
+def create_zeros(dtype=np.float64):
     return np.zeros((2,2), dtype=dtype)
 
-def create_from_bounds(left, right, bottom, top, dtype=None):
+def create_from_bounds(left, right, bottom, top, dtype=np.float64):
     """Creates a rectangle from the specified boundaries.
 
     This caters for the left and right, and for the

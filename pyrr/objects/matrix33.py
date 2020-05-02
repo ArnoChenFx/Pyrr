@@ -115,14 +115,14 @@ class Matrix33(BaseMatrix33):
     ########################
     # Creation
     @classmethod
-    def from_matrix44(cls, matrix, dtype=None):
+    def from_matrix44(cls, matrix, dtype=np.float64):
         """Creates a Matrix33 from a Matrix44.
 
         The Matrix44 translation will be lost.
         """
         return cls(matrix33.create_from_matrix44(matrix, dtype))
 
-    def __new__(cls, value=None, dtype=None):
+    def __new__(cls, value=None, dtype=np.float64):
         if value is not None:
             obj = value
             if not isinstance(value, np.ndarray):
@@ -135,7 +135,7 @@ class Matrix33(BaseMatrix33):
             elif obj.shape == (4,) or isinstance(obj, Quaternion):
                 obj = matrix33.create_from_quaternion(obj, dtype=dtype)
         else:
-            obj = np.zeros(cls._shape, dtype=dtype)
+            obj = np.identity(cls._shape[0], dtype=dtype)
         obj = obj.view(cls)
         return super(Matrix33, cls).__new__(cls, obj)
 

@@ -15,7 +15,7 @@ from . import quaternion
 from .utils import all_parameters_as_numpy_arrays, parameters_as_numpy_arrays
 
 
-def create_identity(dtype=None):
+def create_identity(dtype=np.float64):
     """Creates a new matrix44 and sets it to
     an identity matrix.
 
@@ -24,7 +24,7 @@ def create_identity(dtype=None):
     """
     return np.identity(4, dtype=dtype)
 
-def create_from_matrix33(mat, dtype=None):
+def create_from_matrix33(mat, dtype=np.float64):
     """Creates a Matrix44 from a Matrix33.
 
     The translation will be 0,0,0.
@@ -48,7 +48,7 @@ def create_matrix33_view(mat):
     return mat[0:3, 0:3]
 
 @parameters_as_numpy_arrays('eulers')
-def create_from_eulers(eulers, dtype=None):
+def create_from_eulers(eulers, dtype=np.float64):
     """Creates a matrix from the specified Euler rotations.
 
     :param numpy.array eulers: A set of euler rotations in the format
@@ -66,7 +66,7 @@ def create_from_eulers(eulers, dtype=None):
     return mat
 
 @parameters_as_numpy_arrays('axis')
-def create_from_axis_rotation(axis, theta, dtype=None):
+def create_from_axis_rotation(axis, theta, dtype=np.float64):
     """Creates a matrix from the specified rotation theta around an axis.
 
     :param numpy.array axis: A (3,) vector.
@@ -85,7 +85,7 @@ def create_from_axis_rotation(axis, theta, dtype=None):
     return mat
 
 @parameters_as_numpy_arrays('quat')
-def create_from_quaternion(quat, dtype=None):
+def create_from_quaternion(quat, dtype=np.float64):
     """Creates a matrix with the same rotation as a quaternion.
 
     :param quat: The quaternion to create the matrix from.
@@ -102,7 +102,7 @@ def create_from_quaternion(quat, dtype=None):
     return mat
 
 @parameters_as_numpy_arrays('quat')
-def create_from_inverse_of_quaternion(quat, dtype=None):
+def create_from_inverse_of_quaternion(quat, dtype=np.float64):
     """Creates a matrix with the inverse rotation of a quaternion.
 
     This can be used to go from object space to intertial space.
@@ -122,7 +122,7 @@ def create_from_inverse_of_quaternion(quat, dtype=None):
     return mat
 
 @parameters_as_numpy_arrays('vec')
-def create_from_translation(vec, dtype=None):
+def create_from_translation(vec, dtype=np.float64):
     """Creates an identity matrix with the translation set.
 
     :param numpy.array vec: The translation vector (shape 3 or 4).
@@ -135,7 +135,7 @@ def create_from_translation(vec, dtype=None):
     mat[3, 0:3] = vec[:3]
     return mat
 
-def create_from_scale(scale, dtype=None):
+def create_from_scale(scale, dtype=np.float64):
     """Creates an identity matrix with the scale set.
 
     :param numpy.array scale: The scale to apply as a vector (shape 3).
@@ -150,7 +150,7 @@ def create_from_scale(scale, dtype=None):
         m = m.astype(dtype)
     return m
 
-def create_from_x_rotation(theta, dtype=None):
+def create_from_x_rotation(theta, dtype=np.float64):
     """Creates a matrix with the specified rotation about the X axis.
 
     :param float theta: The rotation, in radians, about the X-axis.
@@ -164,7 +164,7 @@ def create_from_x_rotation(theta, dtype=None):
     mat[0:3, 0:3] = matrix33.create_from_x_rotation(theta, dtype)
     return mat
 
-def create_from_y_rotation(theta, dtype=None):
+def create_from_y_rotation(theta, dtype=np.float64):
     """Creates a matrix with the specified rotation about the Y axis.
 
     :param float theta: The rotation, in radians, about the Y-axis.
@@ -178,7 +178,7 @@ def create_from_y_rotation(theta, dtype=None):
     mat[0:3, 0:3] = matrix33.create_from_y_rotation(theta, dtype)
     return mat
 
-def create_from_z_rotation(theta, dtype=None):
+def create_from_z_rotation(theta, dtype=np.float64):
     """Creates a matrix with the specified rotation about the Z axis.
 
     :param float theta: The rotation, in radians, about the Z-axis.
@@ -235,7 +235,7 @@ def multiply(m1, m2):
     """
     return np.dot(m1, m2)
 
-def create_perspective_projection(fovy, aspect, near, far, dtype=None):
+def create_perspective_projection(fovy, aspect, near, far, dtype=np.float64):
     """Creates perspective projection matrix.
 
     .. seealso:: http://www.opengl.org/sdk/docs/man2/xhtml/gluPerspective.xml
@@ -252,7 +252,7 @@ def create_perspective_projection(fovy, aspect, near, far, dtype=None):
     xmax = ymax * aspect
     return create_perspective_projection_from_bounds(-xmax, xmax, -ymax, ymax, near, far, dtype=dtype)
 
-def create_perspective_projection_matrix(fovy, aspect, near, far, dtype=None):    # TDOO: mark as deprecated
+def create_perspective_projection_matrix(fovy, aspect, near, far, dtype=np.float64):    # TDOO: mark as deprecated
     """Creates perspective projection matrix.
 
     .. seealso:: http://www.opengl.org/sdk/docs/man2/xhtml/gluPerspective.xml
@@ -274,7 +274,7 @@ def create_perspective_projection_from_bounds(
     top,
     near,
     far,
-    dtype=None
+    dtype=np.float64
 ):
     """Creates a perspective projection matrix using the specified near
     plane dimensions.
@@ -322,7 +322,7 @@ def create_perspective_projection_from_bounds(
     ), dtype=dtype)
 
 def create_perspective_projection_matrix_from_bounds(
-    left, right, bottom, top, near, far, dtype=None):    # TDOO: mark as deprecated
+    left, right, bottom, top, near, far, dtype=np.float64):    # TDOO: mark as deprecated
     """Creates a perspective projection matrix using the specified near
     plane dimensions.
 
@@ -365,7 +365,7 @@ def create_orthogonal_projection(
     top,
     near,
     far,
-    dtype=None
+    dtype=np.float64
 ):
     """Creates an orthogonal projection matrix.
 
@@ -416,7 +416,7 @@ def create_orthogonal_projection(
     ), dtype=dtype)
 
 def create_orthogonal_projection_matrix(
-    left, right, bottom, top, near, far, dtype=None):    # TDOO: mark as deprecated
+    left, right, bottom, top, near, far, dtype=np.float64):    # TDOO: mark as deprecated
     """Creates an orthogonal projection matrix.
 
     :param float left: The left of the near plane relative to the plane's centre.
@@ -451,7 +451,7 @@ def create_orthogonal_projection_matrix(
         left, right, bottom, top, near, far, dtype
     )
 
-def create_look_at(eye, target, up, dtype=None):
+def create_look_at(eye, target, up, dtype=np.float64):
     """Creates a look at matrix according to OpenGL standards.
 
     :param numpy.array eye: Position of the camera in world coordinates.

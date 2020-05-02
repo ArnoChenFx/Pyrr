@@ -68,7 +68,7 @@ class Vector3(BaseVector3):
     ########################
     # Creation
     @classmethod
-    def from_vector4(cls, vector, dtype=None):
+    def from_vector4(cls, vector, dtype=np.float64):
         """Create a Vector3 from a Vector4.
 
         Returns the Vector3 and the W component as a tuple.
@@ -76,7 +76,7 @@ class Vector3(BaseVector3):
         vec, w = vector3.create_from_vector4(vector, dtype)
         return (cls(vec), w)
 
-    def __new__(cls, value=None, w=0.0, dtype=None):
+    def __new__(cls, value=None, w=0.0, dtype=np.float64):
         if value is not None:
             obj = value
             if not isinstance(value, np.ndarray):

@@ -32,7 +32,7 @@ class index:
     end = 1
 
 
-def create_zeros(dtype=None):
+def create_zeros(dtype=np.float64):
     """Creates a line with the start and end at the origin.
 
     :rtype: numpy.array
@@ -40,7 +40,7 @@ def create_zeros(dtype=None):
     """
     return np.zeros((2,3), dtype=dtype)
 
-def create_from_points(v1, v2, dtype=None):
+def create_from_points(v1, v2, dtype=np.float64):
     """Creates a line from 2 vectors.
 
     The 2 vectors represent the start and end point of the line.
